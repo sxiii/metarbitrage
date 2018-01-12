@@ -9,9 +9,6 @@ By using arbitrage, you can use rate differences ("spread") as a profit generati
 ## Notice
 Arbitrage can't be always perfect. Please check that both exchanges have working wallets in both ways: for deposit and for withdrawal, too. Often arbitrage rates higher than 20-30% are related to wallet being frozen on exchange. Also, note, that the "volume" column is VERY important - it can take forever to trade currency with low volume! Triple-check and note that you can loose some of your money in case of manual mistakes.
 
-## The future
-I'm planning to develop this script to become a sort of arbitrage bot. We will have a look if some developers would like to join me.
-
 ## Language
 The script is written in bash. Works in Linux (Ubuntu, Arch?) also tested on Mac.
 
@@ -24,6 +21,16 @@ The script is written in bash. Works in Linux (Ubuntu, Arch?) also tested on Mac
 You can install all of the requirements in ubuntu like this: `sudo apt install curl bc html2text jq` - it should take just few megabytes or less.
 
 For archlinux or arch-based distros like Manjaro, try: `pacman -S curl bc html2text jq`
+
+## Usage
+0. Install git if you don't already (ubuntu - `sudo apt install git`)
+1. Clone this repo: `git clone https://github.com/sxiii/metarbitrage`
+2. Enter the downloaded folder: `cd metarbitrage`
+3. Run the specified script: `./crypto.sh` or `./crypto-fiat.sh`
+4. Wait for script to finish work. If it's not working, check the requirements. If it's still not working, please add github issue to this repo with error details, thanks!
+
+## The future
+I'm planning to develop this script to become a sort of arbitrage bot. We will have a look if some developers would like to join me.
 
 ## Crypto
 This script is for cryptocurrency <-> cryptocurrency arbitrage only. One-way.
