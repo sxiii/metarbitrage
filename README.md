@@ -36,6 +36,7 @@ This script is for crypto <-> crypto and crypto <-> fiat arbitrage.
 ## Supported exchanges
 * cryptofiat.sh: YoBit.net, Wex.nz, Exmo.me
 * crypto.sh: YoBit.net, Wex.nz, Exmo.me, Openledger (Bitshares, Rudex), Kraken
+
 Note: WIP (work-in-progress) some of exchanges might be broken. Please make a pull request if you feel you fixed or added some exchange. Thanks!
 
 ## HELP! - this is WIP (Work In Progress)
