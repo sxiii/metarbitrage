@@ -23,7 +23,7 @@ You can install all of the requirements in ubuntu like this: `sudo apt install c
 For archlinux or arch-based distros like Manjaro, try: `pacman -S curl bc html2text jq`
 
 ## Usage
-0. Install git if you don't already (ubuntu - `sudo apt install git`)
+0. Install git if you don't already ( ubuntu - `sudo apt install git` )
 1. Clone this repo: `git clone https://github.com/sxiii/metarbitrage`
 2. Enter the downloaded folder: `cd metarbitrage`
 3. Run the specified script: `./crypto.sh` or `./crypto-fiat.sh`
