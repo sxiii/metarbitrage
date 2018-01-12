@@ -15,7 +15,7 @@ The script is written in bash. Works in Linux (Ubuntu, Arch?) also tested on Mac
 ## Requirements
 * curl - for interacting with exchange APIs
 * bc - for some mathematical operations
-* html2text - to parse HTML
+* html2text - to parse HTML, needed only to load BTC futures from CBOE, if you don't like them you can comment out (add # to the beginning of the line) the row that starts with: `d=$(curl -s http://cfe.cboe.com/cfe-products/xbt-cboe-bitcoin-futures...`
 * jq - to parse JSON
 
 You can install all of the requirements in ubuntu like this: `sudo apt install curl bc html2text jq` - it should take just few megabytes or less.
