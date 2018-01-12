@@ -28,7 +28,7 @@ For archlinux or arch-based distros like Manjaro, try: `pacman -S curl bc html2t
 0. Install git if you don't already ( ubuntu - `sudo apt install git` )
 1. Clone this repo: `git clone https://github.com/sxiii/metarbitrage`
 2. Enter the downloaded folder: `cd metarbitrage`
-3. Run the specified script: `./crypto.sh` or `./crypto-fiat.sh`
+3. Run the specified script: `./crypto.sh` or `./cryptofiat.sh`
 4. Wait for script to finish work. If it's not working, check the requirements. If it's still not working, please add github issue to this repo with error details, thanks!
 
 ## The future
