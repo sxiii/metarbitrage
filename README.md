@@ -1,5 +1,7 @@
 # Metarbitrage
-Cryptocurrency Arbitrage Script Sources
+Cryptocurrency Arbitrage Script Sources (BASH: Linux & Mac)
+
+![Header](https://imgur.com/tPULtbJ.png)
 
 ## The Task
 This scripts aims at several cryptocurrency exchanges, looking for their cryptocurrency and crypto-fiat rate differences. It shows you different fiat and crypto-fiat pairs and aims to help in cryptocurrency arbitrage.
