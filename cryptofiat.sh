@@ -23,20 +23,23 @@ for i in `seq 0 $(($end-1))`; do
 
 	w=""; y=""; e=""; r=""; r2=""; r3="";
 
-	curl -f -s https://wex.nz/api/3/ticker/"${tickerswex[i]}" > wfile
-	w=$(cat wfile | jq '.'"${tickerswex[i]}"'.sell')
-	wv=$(cat wfile | jq '.'"${tickerswex[i]}"'.vol')
-	rm wfile
+	wfile=$(mktemp)
+	curl -f -s https://wex.nz/api/3/ticker/"${tickerswex[i]}" > "${wfile}"
+	w=$(cat "${wfile}" | jq '.'"${tickerswex[i]}"'.sell')
+	wv=$(cat "${wfile}" | jq '.'"${tickerswex[i]}"'.vol')
+	rm "${wfile}"
 
-	curl -f -s https://yobit.net/api/3/ticker/"${tickersyob[i]}" > yfile
-	y=$(cat yfile | jq '.'"${tickersyob[i]}"'.sell')
-	yv=$(cat yfile | jq '.'"${tickersyob[i]}"'.vol')
-	rm yfile
+	yfile=$(mktemp)
+	curl -f -s https://yobit.net/api/3/ticker/"${tickersyob[i]}" > "${yfile}"
+	y=$(cat "${yfile}" | jq '.'"${tickersyob[i]}"'.sell')
+	yv=$(cat "${yfile}" | jq '.'"${tickersyob[i]}"'.vol')
+	rm "${yfile}"
 
-	curl -f -s https://api.exmo.com/v1/ticker > efile
-	e=$(cat efile | jq '.'"${tickersexm[i]}"'.sell_price' | awk -F'"' '{ print $2 }')
-	ev=$(cat efile | jq '.'"${tickersexm[i]}"'.vol' | awk -F'"' '{ print $2 }')
-	rm efile
+	efile=$(mktemp)
+	curl -f -s https://api.exmo.com/v1/ticker > "${efile}"
+	e=$(cat "${efile}" | jq '.'"${tickersexm[i]}"'.sell_price' | awk -F'"' '{ print $2 }')
+	ev=$(cat "${efile}" | jq '.'"${tickersexm[i]}"'.vol' | awk -F'"' '{ print $2 }')
+	rm "${efile}"
 
 	[[ $w == null ]] && w=""; [[ $y == null ]] && y=""; [[ $e == null ]] && e=""; 
 	[[ $wv == null ]] && wv=""; [[ $yv == null ]] && yv=""; [[ $ev == null ]] && ev="";
