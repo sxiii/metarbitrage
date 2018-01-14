@@ -31,32 +31,38 @@ for i in `seq 0 $(($end-1))`; do
 
 	w=""; y=""; e=""; r=""; r2=""; r3=""; r4=""; r5=""; r6="";
 
-	curl -f -s https://wex.nz/api/3/ticker/"${tickerswex[i]}" > wfile
-	w=$(cat wfile | jq '.'"${tickerswex[i]}"'.sell')
-	wv=$(cat wfile | jq '.'"${tickerswex[i]}"'.vol')
-	rm wfile
+	wfile=$(mktemp)
+	curl -f -s https://wex.nz/api/3/ticker/"${tickerswex[i]}" > "${wfile}"
+	w=$(cat "${wfile}" | jq '.'"${tickerswex[i]}"'.sell')
+	wv=$(cat "${wfile}" | jq '.'"${tickerswex[i]}"'.vol')
+	rm "${wfile}"
 
-	curl -f -s https://yobit.net/api/3/ticker/"${tickersyob[i]}" > yfile
-	y=$(cat yfile | jq '.'"${tickersyob[i]}"'.sell')
-	yv=$(cat yfile | jq '.'"${tickersyob[i]}"'.vol')
-	rm yfile
+	yfile=$(mktemp)
+	curl -f -s https://yobit.net/api/3/ticker/"${tickersyob[i]}" > "${yfile}"
+	y=$(cat "${yfile}" | jq '.'"${tickersyob[i]}"'.sell')
+	yv=$(cat "${yfile}" | jq '.'"${tickersyob[i]}"'.vol')
+	rm "${yfile}"
 
-	curl -f -s https://api.exmo.com/v1/ticker > efile
-	e=$(cat efile | jq '.'"${tickersexm[i]}"'.sell_price' | awk -F'"' '{ print $2 }')
-	ev=$(cat efile | jq '.'"${tickersexm[i]}"'.vol' | awk -F'"' '{ print $2 }')
-	rm efile
+	efile=$(mktemp)
+	curl -f -s https://api.exmo.com/v1/ticker > "${efile}"
+	e=$(cat "${efile}" | jq '.'"${tickersexm[i]}"'.sell_price' | awk -F'"' '{ print $2 }')
+	ev=$(cat "${efile}" | jq '.'"${tickersexm[i]}"'.vol' | awk -F'"' '{ print $2 }')
+	rm "${efile}"
 
-	curl -f -s https://stats.openledger.info/api/asset/pairs > ofile
-	o=$(cat ofile | jq '.'"${tickersol[i]}"'.last')
-	ov=$(cat ofile | jq '.'"${tickersol[i]}"'.baseVolume')
-	rm ofile
+
+	ofile=$(mktemp)
+	curl -f -s https://stats.openledger.info/api/asset/pairs > "${ofile}"
+	o=$(cat "${ofile}" | jq '.'"${tickersol[i]}"'.last')
+	ov=$(cat "${ofile}" | jq '.'"${tickersol[i]}"'.baseVolume')
+	rm "${ofile}"
 
 	kbuf=$(printf "%s," "${tickerskra[@]}")
 	khelp=${kbuf//",null"/}
-	curl -f -s https://api.kraken.com/0/public/Ticker?pair=${khelp::-1} > kfile
-	k=$(cat kfile | jq '.result.'"${tickerskra[i]}"'.c[0]' | awk -F'"' '{ print $2 }')
-	kv=$(cat kfile | jq '.result.'"${tickerskra[i]}"'.c[1]' | awk -F'"' '{ print $2 }')
-	rm kfile
+    kfile=$(mktemp)
+	curl -f -s https://api.kraken.com/0/public/Ticker?pair=${khelp::-1} > "${kfile}"
+	k=$(cat "${kfile}" | jq '.result.'"${tickerskra[i]}"'.c[0]' | awk -F'"' '{ print $2 }')
+	kv=$(cat "${kfile}" | jq '.result.'"${tickerskra[i]}"'.c[1]' | awk -F'"' '{ print $2 }')
+	rm "${kfile}"
 
 
 	[[ $w == null ]] && w=""; [[ $y == null ]] && y=""; [[ $e == null ]] && e=""; 
